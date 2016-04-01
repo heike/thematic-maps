@@ -1,0 +1,84 @@
+\documentclass[sts]{imsart}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{url}
+\usepackage[authoryear]{natbib}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+\hypersetup{
+ citecolor=blue,urlcolor=blue}
+
+\newcommand{\hh}[1]{{\color{magenta} #1}}
+\newcommand{\au}[1]{{\color{red} #1}}
+
+\begin{document}
+
+<<setup, include=FALSE>>=
+library(methods)
+library(knitr)
+options(replace.assign=TRUE, reindent.spaces=2, width=70)
+opts_chunk[['set']](error=FALSE)
+knit_hooks$set(document=hook_movecode, par = function(before, options, envir) {
+  if (before && options$fig.show != "none") {
+    par(mar = c(4, 4, 0.1, 0.1), cex.lab = 0.95, cex.axis = 0.9,
+        mgp = c(2, 0.7, 0), tcl = -0.3, las = 1)
+    if (is.list(options$par)) do.call(par, options$par)
+  }
+})
+set.seed(123)
+@
+
+\begin{frontmatter}
+
+
+\title{Another look at Thematic Maps}
+
+\maketitle
+\runtitle{Another look at Thematic Maps}
+
+\begin{aug}
+\author{Antony Unwin\ead[label=e1]{Antony.Unwin@Math.Uni-Augsburg.DE}\ead[label=u1,url]{http://rosuda.org/~unwin/}}
+\and
+\author{Heike Hofmann \ead[label=e2]{hofmann@iastate.edu}\ead[label=u2,url]{http://hofmann.public.iastate.edu}}
+%\affiliation{Department of Statistics, Iowa State University}
+
+\address{Antony Unwin is Professor, Institut f\"ur Mathematik,
+Universit\"at Augsburg,
+D-86135 Augsburg, Germany \printead{e1,u1}}
+
+\address{\hfill\newline Heike Hofmann is Professor, Department of Statistics, Iowa State
+University; 2413 Snedecor Hall, Ames 50011, IA, USA. \printead{e2,u2}}
+
+\runauthor{Unwin and Hofmann}
+\end{aug}
+
+\begin{abstract}
+Abstract goes here
+\end{abstract}
+
+\begin{keyword}
+\kwd{Keywords with upper case first letter}
+\kwd{Like this}
+\end{keyword}
+\end{frontmatter}
+
+
+%==============================================================================%
+\section{Introduction}
+%==============================================================================%
+
+
+\section*{Supplementary materials}
+
+The \textbf{cranvas} package is available on GitHub at \url
+{https://github.com/ggobi/cranvas}. We have movies showing some interactions
+that are available on the website \url{http://cranvas.org}.
+
+\bibliographystyle{imsart-nameyear}
+\bibliography{references}
+
+
+\end{document}
