@@ -73,14 +73,23 @@ Abstract goes here
 Here we can finally start writing the paper.
 
 
+<<old-france, echo=FALSE>>=
+library(ggplot2)
+library(ggthemes)
+mapfrance <- read.csv("data/france-1954-R.csv")
+oldfrance <- read.csv("data/oldFrance.csv")
+qplot(x = long, y=lat, geom="polygon", 
+      group=group, data=mapfrance) 
 
+ggplot(aes(map_id=NOM_REGION), data=oldfrance) +
+  geom_map(aes(fill=AgPerc), map=mapfrance) +
+  expand_limits(x=mapfrance$long, y=mapfrance$lat)
+@
 
 
 \section*{Supplementary materials}
 
-The \textbf{cranvas} package is available on GitHub at \url
-{https://github.com/ggobi/cranvas}. We have movies showing some interactions
-that are available on the website \url{http://cranvas.org}.
+Data and code to recreate all figures of this manuscript are available at \url{https://github.com/heike/thematic-maps}.
 
 \bibliographystyle{imsart-nameyear}
 \bibliography{references}
