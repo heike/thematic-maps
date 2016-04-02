@@ -84,6 +84,8 @@ qplot(x = long, y=lat, geom="polygon",
 ggplot(aes(map_id=NOM_REGION), data=oldfrance) +
   geom_map(aes(fill=AgPerc), map=mapfrance) +
   expand_limits(x=mapfrance$long, y=mapfrance$lat)
+
+ggplot(oldfrance, aes(AgPerc)) + geom_histogram(binwidth=5, colour="grey40", fill="grey70")
 @
 
 
