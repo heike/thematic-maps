@@ -86,6 +86,8 @@ ggplot(aes(map_id=NOM_REGION), data=oldfrance) +
   expand_limits(x=mapfrance$long, y=mapfrance$lat)
 
 ggplot(oldfrance, aes(AgPerc)) + geom_histogram(binwidth=5, colour="grey40", fill="grey70")
+
+ggplot(oldfrance, aes(AgPerc, IndPerc)) + geom_point()
 @
 
 
