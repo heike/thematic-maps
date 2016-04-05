@@ -70,21 +70,25 @@ Abstract goes here
 \section{Introduction}
 %==============================================================================%
 
-Here we can finally start writing the paper.
+Here we can finally start writing the paper. Figure~\ref{fig:map-agperc} shows a choropleth map of the percentage of agricultural by departments in France in 1954. 
 
-
-<<old-france, echo=FALSE>>=
+\begin{figure}
+\centering
+<<old-france, echo=FALSE, out.width='.5\\linewidth'>>=
 library(ggplot2)
 library(ggthemes)
 mapfrance <- read.csv("data/france-1954-R.csv")
 oldfrance <- read.csv("data/oldFrance.csv")
-qplot(x = long, y=lat, geom="polygon", 
-      group=group, data=mapfrance) 
 
 ggplot(aes(map_id=NOM_REGION), data=oldfrance) +
   geom_map(aes(fill=AgPerc), map=mapfrance) +
-  expand_limits(x=mapfrance$long, y=mapfrance$lat)
+  expand_limits(x=mapfrance$long, y=mapfrance$lat) + 
+  theme_map()
+@
+\caption{\label{fig:map-agperc}Choropleth map of France in 1954. Departments are colored by their percentage of agricultural use. Agricultural use  increases with an increasing distance from Paris. }
+\end{figure}
 
+<<more-pics, dependson='old-france', echo=FALSE>>=
 ggplot(oldfrance, aes(AgPerc)) + geom_histogram(binwidth=5, colour="grey40", fill="grey70")
 
 ggplot(oldfrance, aes(AgPerc, IndPerc)) + geom_point()
