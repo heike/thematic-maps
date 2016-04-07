@@ -70,11 +70,20 @@ Abstract goes here
 \section{Introduction}
 %==============================================================================%
 
-Here we can finally start writing the paper. Figure~\ref{fig:map-agperc} shows a choropleth map of the percentage of agricultural by departments in France in 1954. 
+\paragraph{Problems with choropleth maps}
+\begin{itemize}
+\item too few areas, areas of unequal size, area size not being related to importance (e.g., population), areas not being representative of data (e.g., the population of Canada live along the border).  
+\end{itemize}
+
+ plenty of claims are based on not many départements, using ranks, without  taking the population sizes into account. 
+
+\section{Historical Examples}
+\subsection{Bertin}
+ Figure~\ref{fig:map-agperc} shows a choropleth map of the percentage of agricultural by departments in France in 1954. 
 
 \begin{figure}
 \centering
-<<old-france, echo=FALSE, out.width='.5\\linewidth'>>=
+<<old-france, echo=FALSE, out.width='.5\\linewidth', warning=FALSE>>=
 library(ggplot2)
 library(ggthemes)
 mapfrance <- read.csv("data/france-1954-R.csv")
@@ -88,11 +97,34 @@ ggplot(aes(map_id=NOM_REGION), data=oldfrance) +
 \caption{\label{fig:map-agperc}Choropleth map of France in 1954. Departments are colored by their percentage of agricultural use. Agricultural use  increases with an increasing distance from Paris. }
 \end{figure}
 
+\subsection{Guerry}
+\subsection{Fletcher?}
+
+
+\section{Alternatives to choropleth maps}
+\subsection{Linked charts}
+
 <<more-pics, dependson='old-france', echo=FALSE>>=
 ggplot(oldfrance, aes(AgPerc)) + geom_histogram(binwidth=5, colour="grey40", fill="grey70")
 
 ggplot(oldfrance, aes(AgPerc, IndPerc)) + geom_point()
 @
+
+
+
+\subsection{Scatterplots vs pairs of choropleth maps}
+what are the relative advantages and disadvantages?
+
+\subsection{multivariate data and maps}
+linking pcp’s to maps.  Do people use pcp’s with lat/long of area centroids on the first two axes? 
+
+Perhaps we could say something about identifying regional structures and spatial clustering as part of commenting on the range of possibly interesting spatial patterns.  
+
+My guess is that there are no limits to the possible spatial structures that could be worth remarking on, due to both physical and human geography, which handicaps modelling.  
+
+
+
+
 
 
 \section*{Supplementary materials}
